@@ -135,7 +135,7 @@ router.post(
 // @access  Public
 router.get("/google", (req, res) => {
   const redirectTo =
-    req.query["redirect-to"] || "http://localhost:3000/dashboard";
+    req.query["redirect-to"] || `${process.env.CLIENT_URL}/dashboard`;
   const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
   const REDIRECT_URI = process.env.GOOGLE_CALLBACK_URL;
 
@@ -155,7 +155,7 @@ router.get("/google/callback", async (req, res) => {
   const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
   const code = req.query.code;
   const redirectTo = decodeURIComponent(
-    req.query.state || "http://localhost:3001/dashboard"
+    req.query.state || `${process.env.CLIENT_URL}/dashboard`
   );
   const frontendUrl = process.env.CLIENT_URL;
 
